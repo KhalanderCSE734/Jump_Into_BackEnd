@@ -1,0 +1,58 @@
+--> We run JS in Browser, Because Browsers used to have thier own Engines (JavaScript Engines) (Example: V8 Engine in Chrome)
+--> Using that Engine JS runs in Browser
+--> Node.js : V8 enigne was taken from the browser and embeded with C++ and Node.js is made like that
+--> So thereby with the help of Node.js we can Run the JS outside the browser
+--> But in Node.js we don't have "Window" object (Basically while embedding JS All UI related contents are not embeded, only server side things   are embded) 
+--> Hence Node.js is RunTime environment for JavaScript
+*  'LTS' stands for LongTermSupport and 'Current' is kind of "Beta version" where it is only for testing and devlopers use it to test
+* 'even versions' you can use it (LTS) , 'odd versions' are beta versions (developing mode)
+--> 'NPM' is NodePackageManager (It has many packages which we can Downlaod and use in Our JavaScript) (We'll Get many in 'npmjs.com')
+
+
+//                                                    URL
+Example:-           https://www.google.com/
+URL stands for Uniform Resource Locater
+--> Here 'https://' is known as protocol (HyperTextTransferProtocol Secured) (They are encrypted) 
+--> Next one is domain name i.e., www.google.com (User Friendly IP address)
+--> The final one is Path
+*                        --> '/' - Home Page and so one
+--> The following things are 'Query Parameter' after '?' 
+--> We cannot have 'Spaces' in URL (And They are usually separated by '+' or '?')
+
+
+-->
+"scripts": {
+  "start": "node app.js",   // For production
+  "dev": "nodemon app.js"   // For development
+}
+<--
+
+
+//                                                    Versioning
+
+Example of version (lets take the version of Express):-       "express": "^4.21.2"
+
+--> It basically have 3 parts (1st Part: 4 || 2nd Part: 21 || 3rd Part: 2)
+--> * Last Part (2):- Minor Fixes (and Optional Update) for example any typo or something
+    * Second Part (21):- Recommended Bug Fix OR Security fix (Critical Fix) (Or some new small feature is added)
+    * First Part (4):- Major Release (Very Important One)
+    * We can Specify the versions while installing. Ex:- npm install express@4.18.2 or npm isntall express@latest
+    * '^' caret symbol specifies:- '^4.21.2' means you can change (while Updating or Installing) the 2nd and 3rd part but not the first Part
+    * '~' :- Here it specifies that :- Can only change minor changes
+    * We can even use 'latest' in dependencies
+
+//                                                  RestFull API
+
+--> They are some set of Rules Which we need to follow while handling with APIs OR HTTP methods
+    -->                                               Server------Client
+    * Client Can be "Browser,Mobile,Alexa device, Or any Cross Platform
+    * Response can be anything like:- 'TEXT','IMAGE','HTML','JSON'
+    * SSR (Server Side Rendering): When User Sends a "req" to server and When Server sends the response in return, if The Sent Response 
+      is in HTML, Browser can easily render that 'HTML' document 
+    * CSR (Client Side Rendering): While Sending Response, If it's in  'JSON' or 'XML' Front-end Application should process it and send 
+      Proper format 
+    -->                                               HTTP methods (GET,POST,PATCH,PUT,DELETE)
+    * GET method should only returns the Requested data
+    * POST method should only handle new users data ( Add New Created data)
+    * PATCH method should only update the existing data
+    * POST method should not be used to udpate the data and Some other methods should not be used to do other things

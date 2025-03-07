@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SignUP </title>
+    <style>
+        .form{
+            height: 500px;
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap:15px;
+            div{
+                width:300px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+        button{
+            height: 40px;
+            width:80px;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="/user/signup" class="form">
+        <h1>Welcome To SignUP Page</h1>
+        <div> 
+         <label for="nameInp">Enter Your Name</label>
+         <input type="text" name="name" id="nameInp" required autocomplete="off">
+         </div>
+         <div>
+        <label for="mailInp">Enter Your E-mail</label>
+        <input type="email" name="email" id="mailInp" required autocomplete="off">
+         </div>
+         <div>
+        <label for="passInp">Enter Your Password</label>
+        <input type="password" name="password" id="passInp" required>
+        </div>
+        <button type="submit"> SignUP</button>
+    </form>
+</body>
+</html>

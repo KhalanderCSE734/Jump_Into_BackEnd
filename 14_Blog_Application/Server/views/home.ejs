@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/header') %>
+    <title>Blog App Home Page</title>
+</head>
+<body>
+    <%- include('./partials/navbar') %>
+    <% if (locals.logIn) { %>
+        <h1>Welcome to The App</h1>
+    <% }  else { %>
+            <h1>LogIn to Use the Website</h1>
+        <% }%>
+        <% if (locals.blogs) { %>
+            <div class="container" style="display: flex;gap: 10px; flex-wrap:wrap">
+                <% blogs.forEach((element,ind) => { %>
+                    <div class="card" style="width: 18rem;">
+                        <img src="<%=element.coverImageURl%>" class="card-img-top" alt="..." style="object-fit:contain" height="300px">
+                        <div class="card-body">
+                          <h5 class="card-title"> <%= element.title %> </h5>
+                          <!-- <p class="card-text"><%= element.body %></p> -->
+                           <div style="display: flex;justify-content: space-between;">
+                               <a href="/blogDetail/<%= element._id %>" class="btn btn-primary">Read Blog</a>
+                               <div style="padding:10px;background-color:aquamarine;width:100px;border-radius: 1rem; display: grid;place-items: center; cursor:pointer" class="delete" id="<%= element._id %>">Delete</div>
+                            </div>
+                        </div>
+                      </div>
+                <% }) %>
+                </div>
+        <% } %>
+
+
+    <%- include('./partials/scripts') %>
+    <script>
+        const parent = document.querySelector(".container");
+        const deleteButton = document.querySelectorAll(".delete");
+        // console.log(parent);
+        // console.log(deleteButton);
+        parent.addEventListener("click",(evt)=>{
+            // console.log(evt);
+            if(evt.target.closest(".delete")){
+                console.log("The blog Id is ", evt.target.getAttribute("id"));
+            }
+        })
+    </script>
+    </body>
+</html>

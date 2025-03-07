@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/header') %>
+    <title>Blog App Home Page</title>
+</head>
+<body>
+    <%- include('./partials/navbar') %>
+    <h1>Create Your Blog Here</h1>
+        <form class="container mt-3" method="POST" action="/blog" enctype="multipart/form-data">
+            <label for="title" class="form-label"> Title</label>
+            <input type="text" class="form-control" id="title" name="title">
+            <label for="body" class="form-label mt-3"> Body Of The Blog</label>
+            <textarea name="body" id="body" class="form-control"  placeholder="Write the Body of Blog"></textarea>
+            <label for="img" class="form-label mt-3"> Cover Image</label>
+            <input type="file" class="form-control" id="img" name="img">
+            <button type="submit" class="btn btn-primary mt-3"> Add Blog </button>
+        </form>
+    <%- include('./partials/scripts') %>
+    </body>
+</html> 

@@ -1,0 +1,78 @@
+app.get("/:shortId", async(req,res)=>{
+
+    /** 
+    //  // const web = URL.find({shortId:req.params.shortId},{redirectUrl:1});
+    // const web = URL.find({shortId:req.params.shortId},{redirectUrl:1,_id:0});
+    // const web = URL.find({shortId:req.params.shortId},{redirectUrl:1,_id:0});
+    web.then((data)=>{
+        console.log(data);
+        // return res.status(200).send(`<h1> Your Web URL is ${data[0].redirectUrl}</h1>`);
+        return res.status(200).redirect(data[0].redirectUrl);
+    }).catch((err)=>{
+        console.log(`Interrupted with Error ${err}`);
+    })
+    */
+
+
+   /**
+   
+   const web = URL.findOneAndUpdate({shortId:req.params.shortId},{$push:{visitHistory:{timestamps: Date.now()}}})
+   
+   web.then((data)=>{
+       console.log("Data",data);
+    //    console.log("Web",web);
+       console.log("web url is ",web.redirectUrl);
+       res.redirect(web.redirectUrl);
+   }).catch((err)=>{
+        console.log("Interrupted with Error",err);
+        res.json({err:`${err}`});
+   })
+   * 
+    */
+
+   
+   /**const shortId = req.params.shortId;
+
+   try{
+      await URL.findOneAndUpdate(
+        {shortId:shortId},
+        {$push: {
+            visitHistory:{ timestamp: Date.now() }
+        }}
+       )
+       const web = await URL.findOne({shortId:shortId});
+       console.log("web contains" ,web);
+       if (!web) {
+        return res.status(404).json({ error: "Short URL not found" });
+    }
+       res.redirect(web.redirectUrl);
+       
+   }catch(err){
+        console.log(err);
+        res.status(500).json({Error:`Internal Server Error ${err}`});
+   }
+        */
+ 
+    const shortId = req.params.shortId;
+
+    try {
+        // Find and update in one step, returning the updated document
+        const web = await URL.findOneAndUpdate(
+            { shortId: shortId },
+            { $push: { visitHistory: { timestamp: Date.now() } } },
+            { new: true } // Ensures the updated document is returned
+        );
+
+        console.log("web contains", web);
+
+        if (!web) {
+            return res.status(404).json({ error: "Short URL not found" });
+        }
+
+        res.redirect(web.redirectUrl);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ Error: `Internal Server Error ${err}` });
+    }
+})

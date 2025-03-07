@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/header') %>
+    <title>SignUp Page</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top:200px;
+        }
+    </style>
+</head>
+<body>
+    <%- include("./partials/navbar") %>
+    <% if (locals.err) { %>
+      <div class="alert alert-warning" role="alert">
+        <%= err %> 
+      </div>
+    <% } %>
+    <% if (locals.msg) { %>
+      <div class="alert alert-warning" role="alert">
+        <%= msg %> 
+      </div>
+    <% } %>
+    <div class="container">
+        <form method="post" action="user/signup">
+            <div class="mb-3">
+                <label for="name" class="form-label" >Full Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Full Name">
+              </div>
+            <div class="mb-3">
+              <label for="mail" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="mail" aria-describedby="emailHelp" name="email" placeholder="Enter Your E-mail">
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+              <label for="pass" class="form-label">Password</label>
+              <input type="password" class="form-control" id="pass" name="password" placeholder="Enter Your Password">
+            </div>
+            <button type="submit" class="btn btn-primary">SignUp</button>
+         
+
+          </form>
+    </div>
+
+    <%- include('./partials/scripts') %>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/header') %>
+    <title>Blog App Home Page</title>
+</head>
+<body>
+    <%- include('./partials/navbar') %>
+    <% if (locals.logIn) { %>
+        <h1>Blog Page</h1>
+    <% }  else { %>
+            <h1>LogIn to Use the Website</h1>
+        <% }%>
+        <h1><%= blog.createdBy.fullName %></h1>
+       
+        <div class="card" style="width: 18rem;margin-left:20px">
+            <img src="<%=blog.coverImageURl%>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"> <%= blog.title %> </h5>
+              <p><%= blog.body %></p>
+            </div>
+          </div>
+
+          <div class="container mt-3">
+            <h1>Comments  (<%= comments.length %>) </h1>
+            <% if (locals.logIn) { %>
+            <form action="/blog/comments/<%= blog._id %>" method = "POST" style="display:flex;justify-content: space-between;">
+                <input type="text" name="content" class="form-control" placeholder="Enter Your Comment">
+                <button type="submit" class="btn-primary" style="background-color: olivedrab; border-radius: 1rem;"> Comment </button>
+            </form>
+            <% } %>
+
+          </div>
+
+          <div class="container mt-3">
+            <% if(locals.comments){ %>
+                    <% comments.forEach((element,ind) => { %>
+                        <p> <%= element.createdBy.fullName %> </p>
+                        <p style="font-size: 1.5rem;"><%= element.content %></p>
+                    <% }) %>
+            <%}%>
+          </div>
+    <%- include('./partials/scripts') %>
+    </body>
+</html>
